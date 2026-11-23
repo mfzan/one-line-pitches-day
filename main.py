@@ -29,6 +29,10 @@ def main() -> None:
     os.chmod(path, 0o644)
     # Sanity: the gate allows 1-240 characters, non-whitespace only.
     assert 1 <= len(PITCH) <= 240, f"pitch is {len(PITCH)} chars"
+    # And it must stay one sentence: no newline inside, ends with a period,
+    # and no ". " (a period followed by a space would start a second one).
+    # Note: "make.fun" carries a dot of its own, so count() can't be used.
+    assert "\n" not in PITCH and PITCH.endswith(".") and ". " not in PITCH
 
 
 if __name__ == "__main__":
