@@ -24,8 +24,7 @@ def main() -> None:
     path = os.path.join(out_dir, "entry.txt")
     with open(path, "w", encoding="utf-8", newline="\n") as fh:
         fh.write(PITCH + "\n")
-    # The grader collects /output as another user: files 0644, folders 0755.
-    os.chmod(out_dir, 0o755)
+    # The grader collects /output as another user: files 0644.
     os.chmod(path, 0o644)
     # Sanity: the gate allows 1-240 characters, non-whitespace only.
     assert 1 <= len(PITCH) <= 240, f"pitch is {len(PITCH)} chars"
